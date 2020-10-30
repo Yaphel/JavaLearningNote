@@ -1,0 +1,25 @@
+threadlocal的目的是实现线程安全的变量存储和访问。
+它的策略是建立一个线程共享的ThreadLocalMap，里面用ThreadLocal这个类作为key（这个类是弱引用的），存用户的value。
+用户在访问的时候，通过ThreadLocal作为key取值。
+
+下面有几个问题：
+为什么是弱引用？
+弱引用可以被垃圾回收，强引用则不可。软引用/虚引用不合适。
+为什么会有内存泄露的问题？
+存在一条强引用链：
+	thread ref - thread - threadlocalmap - value
+也就是说，当前线程不销毁，此强引用链不可消除，value不可消除。
+但，当threadlocal这个弱引用没有被强引用的时候，会被GC。
+那么此时实际上我们是访问不到value的，出现了内存泄漏。
+如何避免内存泄漏？
+记得remove()。
+关于这个问题，ThreadLocalMap在设计的过程之中就已经考虑到了，get/set/remove的方法内都会清除key为null的值。
+但即使如此，也不能完全保证解决这个问题。原因如下：
+（1）使用static的ThreadLocal，延长了ThreadLocal的生命周期，可能导致内存泄漏。
+     （这里是因为，static会使变量的生命周期延长到与类一致。）
+（2）分配使用了ThreadLocal又不再调用get(),set(),remove()方法，那么就会导致内存泄漏，因为这块内存一直存在。
+
+拓展：
+	threadlocal是用于线程间的共享的，但不能用于父子线程的信息共享。WHY？
+	如果想做需要这个InheritableThreadLocal
+	（原理是创建时拷贝父线程的本地变量）
