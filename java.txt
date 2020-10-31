@@ -1,0 +1,103 @@
+##hashmap 
+	##1.7 
+		数组链表
+		头插法
+	##1.8 
+		数组链表红黑树
+		尾插法
+	##扩容机制 
+		rehash
+	##线程不安全的原因 
+		1.先读后写非原子
+		2.rehash
+	##2的幂次
+重写equals必须重写hashchode 
+concurrenthashmap
+	##安全失败和快速失败
+	1.7
+		##数组链表
+		##segment
+			继承了重入锁
+			尝试获取会存在并发竞争自旋阻塞
+		##get是高效的因为不加锁
+		volatile修饰节点指针
+		hashEntry
+	1.8
+		##数组链表红黑树
+		CAS+synchronize
+		node
+		补充：put set方法的实现，rehash的实现
+##arraylist和linkedlist
+JUC
+	countdownlatch
+		给定计数器，计数器至0则触发。
+	semaphore
+		操作系统中的信号量
+	cyclicbarrier
+		N个线程相互等待，而且可以循环
+	reentrantlock
+		和sync***的差异：公平锁，可中断，有条件。
+		性能方面，差异不大。
+		推荐使用sync
+	futureTask
+		它可以利用runnable和callable两种接口，保存结果，输出结果。
+	forkjoin
+		多线程递归方法
+	blockingQuene
+		阻塞队列，队列空了，队列满了都进行等待。
+线程池
+	4种线程池，各自的用法
+	单线程池
+	threadpoolexecutor
+	参数的含义
+		核心线程数
+		最大线程数
+		空闲时间&单位
+		缓冲队列（四种）
+			有界阻塞队列，同步队列，无解阻塞队列，优先级队列
+		线程工厂方法
+		拒绝策略（四种）
+			run/抛异常/直接丢弃/丢弃入队最早的
+		使用hash表维护线程的引用
+		submit
+	执行过程
+	运行状态
+##callable和runnable
+	前一个有返回值，可以返回异常，后一个没有
+GC
+##类加载器以及双亲委派模型
+kafka
+   零拷贝
+   	    不使用零拷贝
+   	    	磁盘 dma 内核read缓存 cpu 用户缓存 cpu 内核socket缓存 dma 网卡
+       	mmap模式	
+			磁盘 dma 内核read缓存 cpu 内核socket缓存 dma 网卡
+			实现方式是用映射代替对用户缓存的复制
+		sendfile
+			磁盘 dma 内核read缓存 cpu 内核socket缓存 dma 网卡
+			在Linux内核2.1版本引入，让数据复制只发生在内核空间，减少了上下文切换
+		sendfile后面又进行了改进
+			在Linux内核2.4版本，将内核中的复制也省了。
+			磁盘 dma 内核read缓存 dma 网卡
+			即实现了零CPU拷贝。此之谓零拷贝。
+
+
+第一.java8，特别是jdk1.8是现阶段的主流，jdk11没必要学，直接就是jdk14. 这个主要是掌握juc里面的用法特别是如lock,reentrantlock, skiplist, copyonwritearraylist, deque，之类用法；多线程虽然主流使用是以异步为主，但是面试基本上还是以executor的几个线程池为主，看是否了解，因为现在的基本上都是在executor上封装，譬如scala的akka机制。
+
+第二.springboot，springboot你需要调用run方法了解里面的enviroment，resource，listener是究竟怎么润起来的，spring的bean加载机制搞清楚comman runner和postconstruct就行了。
+
+第三.idea 和git是必须掌握的，eclipse 过时了，但是mat 还可以用，但是大部分不会问那么仔细，最多jvm问下cms ps等，类加载，双亲委托之类，更复杂可能问下jstat dump怎么看gc日志。
+
+第四. 中间件技术，redis，kafka，netty，ElasticSearch是必须了解乃至掌握基本api调用，非常重要，基本上这几个里面kafka你需要了解avro序列化或者json序列化，特别是netty基本上websocket也罢，akka也罢，都是需要了解的。一般公司你如果把reidis，redisson分布式锁讲清楚，kafka 0拷贝讲清楚基本上就ok了，rabitmq，rocketmq了解他们场景。
+
+第五.数据库技术，分表分库sharding sphere和mycat二选一，当然阿里还有其他新鲜工具
+
+第六.rpc技术，目前主流有finagle，dubbo，thrift等，但是建议掌握dubbo/dubbox
+
+第七.缓存技术，spring cache+reids缓存就够了，j2cache我看了下，觉得太繁琐了，简单就好。
+
+第八.高性能队列,disruptor 你掌握了就可以出去吹很多水了，秒杀linkedblockqueue，linkedtansferque之类，秒杀git上有很多源码，了解下够了
+
+第九. 微服务技术，基本上springcloud全家桶就行了，知道在service层配置ribbot,feign就可以了，至于zipkin，cat等其他技术了解下就知道了，http://spring.io多逛逛，有好处的。目前我生产主推的springboot2.2.2版本
+
+
