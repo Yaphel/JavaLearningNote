@@ -82,22 +82,42 @@ kafka
 			即实现了零CPU拷贝。此之谓零拷贝。
 
 
-第一.java8，特别是jdk1.8是现阶段的主流，jdk11没必要学，直接就是jdk14. 这个主要是掌握juc里面的用法特别是如lock,reentrantlock, skiplist, copyonwritearraylist, deque，之类用法；多线程虽然主流使用是以异步为主，但是面试基本上还是以executor的几个线程池为主，看是否了解，因为现在的基本上都是在executor上封装，譬如scala的akka机制。
+第一.java8，特别是jdk1.8是现阶段的主流，jdk11没必要学，直接就是jdk14. 这个主要是掌握juc里面的用法特别是如lock,reentrantlock, skiplist, copyonwritearraylist, deque，之类用法；多线程虽然主流使用是以异步为主，但是面试基本上还是以executor的几个线程池为主，看是否了解，因为现在的基本上都是在executor上封装，譬如scala的akka机制。（正在完成）
 
-第二.springboot，springboot你需要调用run方法了解里面的enviroment，resource，listener是究竟怎么润起来的，spring的bean加载机制搞清楚comman runner和postconstruct就行了。
+第二.springboot，springboot你需要调用run方法了解里面的enviroment，resource，listener是究竟怎么润起来的，spring的bean加载机制搞清楚comman runner和postconstruct就行了。（待完成）
 
-第三.idea 和git是必须掌握的，eclipse 过时了，但是mat 还可以用，但是大部分不会问那么仔细，最多jvm问下cms ps等，类加载，双亲委托之类，更复杂可能问下jstat dump怎么看gc日志。
+第三.idea 和git是必须掌握的，eclipse 过时了，但是mat 还可以用，但是大部分不会问那么仔细，最多jvm问下cms ps等，类加载，双亲委托之类，更复杂可能问下jstat dump怎么看gc日志。（JVM/MAT/GIT）
 
-第四. 中间件技术，redis，kafka，netty，ElasticSearch是必须了解乃至掌握基本api调用，非常重要，基本上这几个里面kafka你需要了解avro序列化或者json序列化，特别是netty基本上websocket也罢，akka也罢，都是需要了解的。一般公司你如果把reidis，redisson分布式锁讲清楚，kafka 0拷贝讲清楚基本上就ok了，rabitmq，rocketmq了解他们场景。
+第四. 中间件技术，redis，kafka，netty，ElasticSearch是必须了解乃至掌握基本api调用，非常重要，基本上这几个里面kafka你需要了解avro序列化或者json序列化，特别是netty基本上websocket也罢，akka也罢，都是需要了解的。一般公司你如果把reidis，redisson分布式锁讲清楚，kafka 0拷贝讲清楚基本上就ok了，rabitmq，rocketmq了解他们场景。（redis熟悉/zk了解/netty了解/kafka待完成/es待完成）
 
-第五.数据库技术，分表分库sharding sphere和mycat二选一，当然阿里还有其他新鲜工具
+第五.数据库技术，分表分库sharding sphere和mycat二选一，当然阿里还有其他新鲜工具（mycat待完成/mysql待整理）
 
-第六.rpc技术，目前主流有finagle，dubbo，thrift等，但是建议掌握dubbo/dubbox
+第六.rpc技术，目前主流有finagle，dubbo，thrift等，但是建议掌握dubbo/dubbox（dubbo熟悉）
 
-第七.缓存技术，spring cache+reids缓存就够了，j2cache我看了下，觉得太繁琐了，简单就好。
+第七.缓存技术，spring cache+reids缓存就够了，j2cache我看了下，觉得太繁琐了，简单就好。（spring cache了解/redis了解）
 
-第八.高性能队列,disruptor 你掌握了就可以出去吹很多水了，秒杀linkedblockqueue，linkedtansferque之类，秒杀git上有很多源码，了解下够了
+第八.高性能队列,disruptor 你掌握了就可以出去吹很多水了，秒杀linkedblockqueue，linkedtansferque之类，秒杀git上有很多源码，了解下够了（待了解）
 
 第九. 微服务技术，基本上springcloud全家桶就行了，知道在service层配置ribbot,feign就可以了，至于zipkin，cat等其他技术了解下就知道了，http://spring.io多逛逛，有好处的。目前我生产主推的springboot2.2.2版本
+（随便写个demo就可以了）
 
 
+总结下：
+	java8/spring boot/git/mat/kafka/es/mycat/disruptor/jvm/微服务的demo要写上一点东西。
+	java8 juc（可以加快）/反射/容器/异常   3天努努力			 
+	spring boot看源码教程     未知
+	git随便找教程			 1天
+	mat不知道				未知
+	kafka看书+demo			最多3天
+	es看书+demo				最多3天
+	mycat看书+demo			最多3天
+	disruptor不了解          未知
+	jvm总结笔记				最多3天
+	微服务demo写就是了		一周
+	其他MQ了解一下
+	linux指令
+	计算机网络/操作系统的题
+	复习下算法
+	幂等性
+
+3周+源码+mat+disruptor+JAVA8    这些又一个月了。。。
