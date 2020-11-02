@@ -1,69 +1,3 @@
-##hashmap 
-	##1.7 
-		数组链表
-		头插法
-	##1.8 
-		数组链表红黑树
-		尾插法
-	##扩容机制 
-		rehash
-	##线程不安全的原因 
-		1.先读后写非原子
-		2.rehash
-	##2的幂次
-重写equals必须重写hashchode 
-concurrenthashmap
-	##安全失败和快速失败
-	1.7
-		##数组链表
-		##segment
-			继承了重入锁
-			尝试获取会存在并发竞争自旋阻塞
-		##get是高效的因为不加锁
-		volatile修饰节点指针
-		hashEntry
-	1.8
-		##数组链表红黑树
-		CAS+synchronize
-		node
-		补充：put set方法的实现，rehash的实现
-##arraylist和linkedlist
-JUC
-	countdownlatch
-		给定计数器，计数器至0则触发。
-	semaphore
-		操作系统中的信号量
-	cyclicbarrier
-		N个线程相互等待，而且可以循环
-	reentrantlock
-		和sync***的差异：公平锁，可中断，有条件。
-		性能方面，差异不大。
-		推荐使用sync
-	futureTask
-		它可以利用runnable和callable两种接口，保存结果，输出结果。
-	forkjoin
-		多线程递归方法
-	blockingQuene
-		阻塞队列，队列空了，队列满了都进行等待。
-线程池
-	4种线程池，各自的用法
-	单线程池
-	threadpoolexecutor
-	参数的含义
-		核心线程数
-		最大线程数
-		空闲时间&单位
-		缓冲队列（四种）
-			有界阻塞队列，同步队列，无解阻塞队列，优先级队列
-		线程工厂方法
-		拒绝策略（四种）
-			run/抛异常/直接丢弃/丢弃入队最早的
-		使用hash表维护线程的引用
-		submit
-	执行过程
-	运行状态
-##callable和runnable
-	前一个有返回值，可以返回异常，后一个没有
 GC
 ##类加载器以及双亲委派模型
 kafka
@@ -104,7 +38,7 @@ kafka
 
 总结下：
 	java8/spring boot/git/mat/kafka/es/mycat/disruptor/jvm/微服务的demo要写上一点东西。
-	java8 juc（可以加快）/反射/容器/异常   3天努努力			 
+	java8 juc（可以加快）/反射/容器/异常   4-5天		 
 	spring boot看源码教程     未知
 	git随便找教程			 1天
 	mat不知道				未知
@@ -120,4 +54,10 @@ kafka
 	复习下算法
 	幂等性
 
-3周+源码+mat+disruptor+JAVA8    这些又一个月了。。。
+juc 2天
+git 1天
+kafka/es 7天
+mycat/jvm 7天
+demo 7天
+sb教程   7天
+一个月。
